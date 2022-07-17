@@ -1,13 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 
-#define NUMBER      100
+#define NUMBER      20
 #define PRISONERS   NUMBER
 #define BOXES       NUMBER
-#define OFFSET      1
+#define OFFSET      0
 
-#define ITERATIONS  0
-#define TRIES_LIMIT PRISONERS / 2
+#define ITERATIONS  1
+#define TRIES_LIMIT PRISONERS / 2 + 1
 
 typedef enum STRATEGY_E {
     RANDOMNESS,
