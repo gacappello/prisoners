@@ -1,0 +1,7 @@
+.vscode/
+.idea/
+
+src/obj/*
+
+src/prisoners
+src/debug
