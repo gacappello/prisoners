@@ -8,6 +8,7 @@
 void fill_boxes(box_t *boxes){
     size_t len = NUMBER;
     for(int i=0;i<len;i++){
+        boxes[i].opened = 0;
         boxes[i].num = i + OFFSET;
         boxes[i].paper = i + OFFSET;
     }
@@ -21,5 +22,6 @@ void shuffle_boxes(box_t *boxes){
         int tmp = boxes[i].paper;
         boxes[i].paper = boxes[j].paper;
         boxes[j].paper = tmp;
+        boxes[j].opened = 0;
     }
 }

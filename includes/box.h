@@ -4,6 +4,7 @@
 typedef struct BOX_S {
     int num;
     int paper;
+    signed char opened;
 } box_t;
 
 void fill_boxes(box_t *boxes);
