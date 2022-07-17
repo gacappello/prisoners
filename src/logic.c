@@ -49,13 +49,17 @@ int rand_strat(prisoner_t prisoner, box_t boxes[], box_t path[], int tries_left)
     }
     
     // Checks if box is opened
+    int rand_index;
+    int paper;
+    int num;
+
     do{
-        int rand_index = rand() % NUMBER;
-        int paper = boxes[rand_index].paper;
-        int num = prisoner.num;
+        rand_index = rand() % NUMBER;
+        paper = boxes[rand_index].paper;
+        num = prisoner.num;
     }while(boxes[rand_index].opened);
 
-    boxes[searching_in].opened = 1;
+    boxes[rand_index].opened = 1;
     path[TRIES_LIMIT - tries_left - 1] = boxes[rand_index];
 
     // Found
