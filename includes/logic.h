@@ -7,6 +7,6 @@
 
 int make_choice (prisoner_t prisoner, box_t boxes[], box_t path[], game_state_t *state);
 int loopy_strat (prisoner_t prisoner, box_t boxes[], box_t path[], int searching_in, int tries_left);
-int rand_strat  (prisoner_t prisoner, box_t boxes[], box_t path[], int tries_left);
+int rand_strat  (prisoner_t prisoner, box_t boxes[], box_t path[], int searching_in, int tries_left);
 
 #endif //LOGIC_H

@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
 #include "../includes/game.h"
 #include "../includes/box.h"
@@ -17,33 +19,35 @@ int main(void){
     fill_prisoners(prisoners);
     fill_boxes(boxes);
 
-    for(int i=0;i<PRISONERS;i++){
-       printf("Prisoner: %d Box: %d Paper: %d\n", prisoners[i].num, boxes[i].num, boxes[i].paper);
-    }
-    printf("\n");
-
+    int total_wins = 0;
     for(int i=0;i<ITERATIONS;i++){
 
         // Shuffle needs to be done every time
         shuffle_boxes(boxes);
 
+        int prisoner_wins = 0;
         for(int j=0;j<PRISONERS;j++){
 
-            box_t path [TRIES_LIMIT];
+            box_t path[BOXES];
+            memcpy(path, boxes, BOXES*sizeof(box_t));
 
             int found = make_choice(prisoners[j], boxes, path, &state);
-            if(found)
-                printf("PRISONER NUMBER %d HAS FOUND: ", prisoners[j].num);
-            else printf("PRISONER NUMBER %d HAS NOT FOUND: ", prisoners[j].num);
+            prisoner_wins += 1 ? found : 0;
 
-            for(int k=0;k<TRIES_LIMIT;k++){
-                if(path[k]. != 0){
-                    printf("%d ", path[k].paper);
-                }
+            for(int k=0;k<BOXES;k++){
+                boxes[k].opened = 0;
             }
-            printf("\n");
         }
+
+        if(prisoner_wins == PRISONERS){
+            total_wins++;
+        }
+
+        double actual = total_wins/(i+1.0);
+        printf("%s %f %s %.30f %s", "Expected: ", state.strategy == LOOPY ? 1-M_LN2 : pow(1/2, NUMBER), "Actual: ", actual, "\r");
     }
 
+    fflush(stdout);
+    printf("\n");
     return EXIT_SUCCESS;
 }
